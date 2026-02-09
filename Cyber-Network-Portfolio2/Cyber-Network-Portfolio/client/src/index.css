@@ -1,0 +1,172 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: 'Orbitron', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: 'Inter', sans-serif;
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+}
+
+/* DARK MODE DEFAULT - CYBER SECURITY THEME */
+:root {
+  /* Dark Navy/Black Background */
+  --background: 224 71% 4%; 
+  /* Neon Green/Cyan Text Base */
+  --foreground: 160 100% 97%;
+
+  /* Darker Card Backgrounds */
+  --card: 224 71% 8%;
+  --card-foreground: 160 100% 97%;
+
+  --popover: 224 71% 4%;
+  --popover-foreground: 160 100% 97%;
+
+  /* Neon Green Primary */
+  --primary: 142 71% 45%; 
+  --primary-foreground: 144 100% 0%;
+
+  /* Dark Cyan Secondary */
+  --secondary: 217 91% 60%;
+  --secondary-foreground: 222 47% 11%;
+
+  /* Muted Greys */
+  --muted: 215 28% 17%;
+  --muted-foreground: 215 20% 65%;
+
+  /* Accent - often hover states */
+  --accent: 216 34% 17%;
+  --accent-foreground: 210 40% 98%;
+
+  --destructive: 0 63% 31%;
+  --destructive-foreground: 210 40% 98%;
+
+  /* Techy Borders */
+  --border: 142 30% 15%; /* Low opacity green border */
+  --input: 216 34% 17%;
+  --ring: 142 76% 36%;
+
+  --radius: 0.25rem; /* Sharper corners for tech feel */
+}
+
+/* Force dark mode styles on body since we are going full dark theme */
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+code, pre, .mono {
+  font-family: var(--font-mono);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.3);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
+}
+
+/* Glitch Effect Utilities */
+.glitch-text {
+  position: relative;
+}
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.glitch-text::before {
+  left: 2px;
+  text-shadow: -1px 0 red;
+  clip: rect(24px, 550px, 90px, 0);
+  animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+.glitch-text::after {
+  left: -2px;
+  text-shadow: -1px 0 blue;
+  clip: rect(85px, 550px, 140px, 0);
+  animation: glitch-anim 2.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+  0% { clip: rect(10px, 9999px, 83px, 0); }
+  20% { clip: rect(65px, 9999px, 15px, 0); }
+  40% { clip: rect(26px, 9999px, 92px, 0); }
+  60% { clip: rect(3px, 9999px, 2px, 0); }
+  80% { clip: rect(54px, 9999px, 46px, 0); }
+  100% { clip: rect(23px, 9999px, 90px, 0); }
+}
+
+@keyframes glitch-anim-2 {
+  0% { clip: rect(65px, 9999px, 100px, 0); }
+  20% { clip: rect(5px, 9999px, 34px, 0); }
+  40% { clip: rect(32px, 9999px, 8px, 0); }
+  60% { clip: rect(95px, 9999px, 12px, 0); }
+  80% { clip: rect(15px, 9999px, 63px, 0); }
+  100% { clip: rect(54px, 9999px, 26px, 0); }
+}
+
+/* Scanline Effect */
+.scanlines {
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0),
+    rgba(255,255,255,0) 50%,
+    rgba(0,0,0,0.1) 50%,
+    rgba(0,0,0,0.1)
+  );
+  background-size: 100% 4px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.3;
+}
